@@ -6,10 +6,10 @@ computer_win = 0
 score = int(input("how many time do u wanna play? : "))
 name = input("your name : ")
 while player_win < score and computer_win < score:
-    print(f"player score: {player_win} and computer score : {computer_win}")
-    print("*rock* \n*paper* \n*scissors*")
+    print(f"\nplayer score: {player_win} and computer score : {computer_win} \n")
+    print("*rock* \n*paper* \n*scissors*\n")
     choice = getpass.getpass(f"{name}'s move (hidden input): ").lower()
-    if input == "quit" or input == "q":
+    if choice == "quit" or choice == "q":
         break
     while not (choice == "rock" or choice == "paper" or choice == "scissors"):
         choice = getpass.getpass(
@@ -23,9 +23,9 @@ while player_win < score and computer_win < score:
     else:
         computer = "scissors"
 
-    print(f"{name}'s move : " + choice)
+    print(f"\n{name}'s move : " + choice)
     print("computer's move : " + computer)
-    print("Shoot!")
+    print("Shoot!\n")
 
     if choice == computer:
         print("two players are tie")
@@ -54,6 +54,9 @@ while player_win < score and computer_win < score:
         print("enter valid input")
 if player_win > computer_win :
     print(" congratulations boss!!")
-else :
-    print(" noo, what have you done!!")
-print(f"final score : computer win {computer_win} times  and player win {player_win} times")
+elif player_win == computer_win :
+    print("well done, better luck next time")
+elif player_win < computer_win :
+    print("noo, what have you done!!")
+    
+print(f"final score : player win {player_win} times and computer win {computer_win} times\n")
