@@ -1,0 +1,18 @@
+first_dic = {'name':'asib', 'age':24, 'study lavel':'bsc engg'}
+print(first_dic)
+print(f"one of the dic value {first_dic['name']}")
+for key, value in first_dic.items():
+    print(f"key is {key} and value is {value}")
+
+for v in first_dic.values():
+    print(v)
+
+for item in first_dic.items():
+    print(item)
+
+#using dictionary
+name ='name' in first_dic
+print(name)
+
+email = 'email' in first_dic
+print(email)
