@@ -1,4 +1,4 @@
-first_dic = {'name':'asib', 'age':24, 'study lavel':'bsc engg'}
+first_dic = {"name": "asib", "age": 24, "study lavel": "bsc engg"}
 print(first_dic)
 print(f"one of the dic value {first_dic['name']}")
 for key, value in first_dic.items():
@@ -10,9 +10,16 @@ for v in first_dic.values():
 for item in first_dic.items():
     print(item)
 
-#using dictionary
-name ='name' in first_dic
+# using dictionary
+name = "name" in first_dic
 print(name)
 
-email = 'email' in first_dic
+email = "email" in first_dic
 print(email)
+
+value = "asib" in first_dic.values()
+print(value)
+
+second_dic = dict(name ='ahmed', home = 'kushtia')  #other type of define dictionary
+print(second_dic)
+
