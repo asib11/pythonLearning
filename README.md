@@ -5,6 +5,6 @@ python bootcamp
 
 truthy are all data except 0, null, false, empty string, undefine the primitive value etc
 
-#slice
+# slice
 start = forward
 end = backward
