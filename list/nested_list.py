@@ -1,6 +1,6 @@
 item = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 
-print("item is " + item[2][1])
+print(f"item is  {item[2][1]}")
 
 for x in item:
     for y in x:

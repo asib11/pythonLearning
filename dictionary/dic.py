@@ -22,4 +22,7 @@ print(value)
 
 second_dic = dict(name ='ahmed', home = 'kushtia')  #other type of define dictionary
 print(second_dic)
-
+print(second_dic.clear())
+second_dic["name"] = 'asib'
+second_dic['phone'] = 8801753249719
+print(second_dic)
