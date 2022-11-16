@@ -10,7 +10,7 @@ for i in convert_ascii:
         encrypted += chr(i)
     elif i>=65 or i<=90:
         encrypted += chr(((i)+key-65)%26+65)
-    elif i>=97 or i<=122
+    elif i>=97 or i<=122:
         encrypted += chr(((i)+key-97)%26+97)
 print(encrypted)
 print(f"encrypted: {''.join(encrypted)}")
