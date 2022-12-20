@@ -3,4 +3,4 @@ sorted_list = [{'username': 'asib','id' : 1, 'program': 'CSE', 'courses':['math'
 #ok = sorted(sorted_list,key = lambda u : len(u['courses']))
 #print(ok)
 
-print(sorted(sorted_list,key = lambda u : len(u['courses'])))
+print(sorted(sorted_list,key = lambda u : len(u['courses']))[1])
