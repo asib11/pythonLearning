@@ -3,7 +3,7 @@ def calculations(*args):
     for i in args:
         total += i
     return total
-print(f'total sum is: {+calculations(10,2,4,5,3,56)}') #its a tuple
+print(f'total sum is: {calculations(10,2,4,5,3,56)}') #its a tuple
 
 def combine_words(string,**kwargs):  #its a dictionary
     if 'prefix' in kwargs:
