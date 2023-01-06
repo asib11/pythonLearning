@@ -1,3 +1,6 @@
+import pdb
+
+pdb.set_trace()
 first_dic = {"name": "asib", "age": 24, "study lavel": "bsc engg"}
 print(first_dic)
 print(f"one of the dic value {first_dic['name']}")
@@ -20,9 +23,9 @@ print(email)
 value = "asib" in first_dic.values()
 print(value)
 
-second_dic = dict(name ='ahmed', home = 'kushtia')  #other type of define dictionary
+second_dic = dict(name="ahmed", home="kushtia")  # other type of define dictionary
 print(second_dic)
 print(second_dic.clear())
-second_dic["name"] = 'asib'
-second_dic['phone'] = 8801753249719
+second_dic["name"] = "asib"
+second_dic["phone"] = 8801753249719
 print(second_dic)

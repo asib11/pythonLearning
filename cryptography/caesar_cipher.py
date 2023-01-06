@@ -1,7 +1,9 @@
+import pdb
 text = input('input a string: ')
 key = int(input('input a key: '))
 convert_ascii = []
 encrypted = []
+pdb.set_trace()
 for c in text:
     convert_ascii.append(ord(c)) 
 #print(convert_ascii) my name is asib
