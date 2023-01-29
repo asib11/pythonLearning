@@ -1,8 +1,13 @@
 if __name__ == '__main__':
-    n = int(input())
-    arr = map(int, input().split())
-    arrr=[]
-    for i in range(0, n):
-        arrr.append(arr)
-    arrr.sort(reverse=True)
-    print(arrr[1])
+    a = []
+    for _ in range(int(input())):
+        name = input()
+        score = float(input())
+        a.append([name, score])
+        a.sort(key = lambda u: u[1])
+    for i in range(len(a)):
+        if a[1][1] == a[i][1]:
+            a.sort()#(key= lambda u: u[0])
+            print(a[i][0])
+        
+    #print(a[1][0])
