@@ -1,6 +1,8 @@
 from time import time
+from functools import wraps
 
 def time_test(func):
+    @wraps(func)
     def wrapper(*args, **kwargs):
         start_time = time()
         result = func(*args, **kwargs)
