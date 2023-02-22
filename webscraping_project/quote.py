@@ -24,31 +24,38 @@ while nxt_url:
     nxt_url = nxt_btn.find("a")["href"] if nxt_btn else None
 #print(all_data)
 
-pick_quote = choice(all_data)
-print(f'here quote is : {pick_quote["text"]}')
-print(pick_quote['name'])
-user_input = ''
-reminder = 4
-while user_input.lower() != pick_quote['name'].lower() and reminder > 0:
-    user_input = input(f'who tell it? your have {reminder} chance: ')
-    reminder -= 1
-    if user_input.lower() == pick_quote['name'].lower():
-        print('congratulations!!!')
-        
-    if reminder == 3:
-        response2 = requests.get(f'{root_url}{pick_quote["url"]}')
-        soup = BeautifulSoup(response2.text, 'html.parser')
-        birth_date = soup.find(class_ ="author-born-date").get_text()
-        birth_location = soup.find(class_ ="author-born-location").get_text()
-        print(f'hint: birth date: {birth_date}')
-    elif reminder == 2:
-        print(f'hint: birth location: {birth_location}')
-    elif reminder == 1:
-        first_last = pick_quote['name'].split(' ')
-        print(f'hint: first name 1st letter "{first_last[0][0]}" and lsat name 1st letter "{first_last[1][0]}"')
-    else:
-        print(f'sorry, you loose.the answer is: {pick_quote["name"]}')
-    play = input('do you want to play again? yes or no: ')
-    # if play == 'no':
-    #     break
-    
+def play_game():
+
+    pick_quote = choice(all_data)
+    print(f'here quote is : {pick_quote["text"]}')
+    print(pick_quote['name'])
+    user_input = ''
+    reminder = 4
+    while user_input.lower() != pick_quote['name'].lower() and reminder > 0:
+        user_input = input(f'who tell it? your have {reminder} chance: ')
+        reminder -= 1
+        if user_input.lower() == pick_quote['name'].lower():
+            print('congratulations!!!')
+            
+        if reminder == 3:
+            response2 = requests.get(f'{root_url}{pick_quote["url"]}')
+            soup = BeautifulSoup(response2.text, 'html.parser')
+            birth_date = soup.find(class_ ="author-born-date").get_text()
+            birth_location = soup.find(class_ ="author-born-location").get_text()
+            print(f'hint: birth date: {birth_date}')
+        elif reminder == 2:
+            print(f'hint: birth location: {birth_location}')
+        elif reminder == 1:
+            first_last = pick_quote['name'].split(' ')
+            print(f'hint: first name 1st letter "{first_last[0][0]}" and lsat name 1st letter "{first_last[1][0]}"')
+        else:
+            print(f'sorry, you loose.the answer is: {pick_quote["name"]}')
+
+    play = ''
+    while play.lower() not in ('y','n'):
+        play = input('do you want to play again? (y/n): ')
+        if play.lower() in 'y':
+            return play_game()
+        elif play.lower() in 'n':
+            print('Vlo theko, Sukhe theko')
+play_game()
