@@ -1,24 +1,14 @@
-if __name__ == '__main__':
-    a = []
-    for _ in range(int(input())):
-        name = input()
-        score = float(input())
-        a.append([name, score])
-        a.sort(key = lambda u: u[1])
-    b ={a}
-    for i in range(len(a)):
-        if a[1][1] == a[i][1]:
-            a.sort()#(key= lambda u: u[0])
-            print(a[i][0])
-        
-    #print(a[1][0])
+students = {}
+for item in range(int(input())):
+    name = input()
+    score = float(input())
+    students[name] = score
 
-# 4
-# Rachel
-# -50
-# Mawer
-# -50
-# Sheen
-# -50
-# Shaheen
-# 51
+values1 = list(students.values())
+set1 = set(values1)
+list1 = sorted(list(set1), reverse=True)
+runner = (list1[len(list1) - 2])
+
+runner_students = sorted([k for k,v in students.items() if v == runner])
+for item in runner_students:
+    print(item)
