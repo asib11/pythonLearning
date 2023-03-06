@@ -41,6 +41,7 @@ class BestMovieSpider(CrawlSpider):
 
         yield {
             'book name': response.xpath('//div[@class="col-sm-6 product_main"]/h1/text()').get(),
+            'book url': response.url,
             'book price': response.xpath('(//div[@class="col-sm-6 product_main"]/p)[1]/text()').get(),
             'book stock': response.xpath('normalize-space((//div[@class="col-sm-6 product_main"]/p[@class="instock availability"]/text())[2])').get()
         }
