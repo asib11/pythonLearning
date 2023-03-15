@@ -6,7 +6,7 @@
 # class BestMovieSpider(CrawlSpider):
 #     name = "best_movie"
 #     allowed_domains = ["www.imdb.com"]
-#     start_urls = ["https://www.imdb.com/search/title/?genres=drama&groups=top_250&sort=user_rating,desc"]
+#     #start_urls = ["https://www.imdb.com/search/title/?genres=drama&groups=top_250&sort=user_rating,desc"]
 
 #     user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36'
 
@@ -31,17 +31,15 @@ from scrapy.spiders import CrawlSpider, Rule
 
 class BestMovieSpider(CrawlSpider):
     name = "best_movie"
-    allowed_domains = ["books.toscrape.com"]
-    start_urls = ["http://books.toscrape.com/"]
+    allowed_domains = ["www.imdb.com"]
+    start_urls = ["https://www.imdb.com/search/title/?genres=drama&groups=top_250&sort=user_rating"]
+    custom_settings = {
+        "USER_AGENT": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36"
+    }
 
-    rules = (Rule(LinkExtractor(restrict_xpaths= '//h3/a'), callback="parse_item", follow=True),Rule(LinkExtractor(restrict_xpaths ='//li[@class="next"]/a')))
-
+    rules = (Rule(LinkExtractor(restrict_xpaths= '//h3[@class="lister-item-header"]/a'), callback="parse_item", follow=True),)
 
     def parse_item(self, response):
-
-        yield {
-            'book name': response.xpath('//div[@class="col-sm-6 product_main"]/h1/text()').get(),
-            'book url': response.url,
-            'book price': response.xpath('(//div[@class="col-sm-6 product_main"]/p)[1]/text()').get(),
-            'book stock': response.xpath('normalize-space((//div[@class="col-sm-6 product_main"]/p[@class="instock availability"]/text())[2])').get()
-        }
+            yield {
+                'title': response.xpath('//div[@class="sc-b5e8e7ce-1 kNhUtn"]/h1[@class="sc-b73cd867-0 gLtJub"]/text()').get()
+            }
