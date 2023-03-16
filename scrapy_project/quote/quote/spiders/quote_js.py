@@ -9,7 +9,7 @@ class QuoteJsSpider(scrapy.Spider):
             assert(splash:go(args.url))
             assert(splash:wait(0.5))
             splash: set_viewport_full()
-            return{ html = splash:html()}
+            return splash:html()
             
         end '''
 
@@ -22,5 +22,14 @@ class QuoteJsSpider(scrapy.Spider):
             yield {
                 "QUOTE": product.xpath('.//span[@class="text"]/text()').get(),
                 "AUTHOR": product.xpath('.//span/small[@class="author"]/text()').get(),
-                "tag": [i.xpath('.//text()').get() for i in product.xpath('.//div[@class="tags"]/a')]
+                'TAG': product.xpath('.//div[@class="tags"]/a/text()').getall()
             }
+
+        next_page = response.xpath('//li[@class="next"]/a/@href').get()
+        if next_page:
+            yield SplashRequest(
+                url=f"http://quotes.toscrape.com{next_page}",
+                callback=self.parse,
+                endpoint = 'execute',
+                args = {'lua_source': self.script}
+            )
