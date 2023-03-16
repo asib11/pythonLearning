@@ -1,21 +1,22 @@
 import scrapy
+from scrapy_splash import SplashRequest
 
+class QuoteJsSpider(scrapy.Spider):
+    name = "quote_js"
+    allowed_domains = ["quotes.toscrape.com"]
+    start_urls = ["http://quotes.toscrape.com/js"]
 
-class DhakaSpider(scrapy.Spider):
-    name = "dhaka"
-    allowed_domains = ["www.dsebd.org"]
-    start_urls = ["https://www.dsebd.org/latest_share_price_scroll_by_ltp.php"]
+    script = '''
+        function main(splash, args)
+            assert(splash:go(args.url))
+            assert(splash:wait(0.5))
+            splash: set_viewport_full()
+            return{ html = splash:html()}
+            
+        end '''
 
-    # def start_requests(self):
-    #     yield scrapy.Request(
-    #         #url="https://www.dsebd.org/latest_share_price_scroll_by_ltp.php",
-    #         url="https://www.dsebd.org/ajax/suggestList.php?suggestType=tc",
-    #         callback=self.parse,
-    #         headers={
-    #             "User-Agent": " Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36"
-    #         },
-    #     )
-
+    def start_requests(self):
+        yield SplashRequest(url ="https://www.dsebd.org/latest_share_price_scroll_by_ltp.php", callback = self.parse, endpoint = 'execute', args = {'lua_source': self.script})
     def parse(self, response):
         products = response.xpath('//div[@class="table-responsive inner-scroll"]/table[@class="table table-bordered background-white shares-table fixedHeader"]/tbody')
         for product in products:
@@ -32,4 +33,3 @@ class DhakaSpider(scrapy.Spider):
                 "VALUE (mn)": product.xpath('normalize-space(.//tr/td[10]/text())').get(),
                 "VOLUME": product.xpath('normalize-space(.//tr/td[11]/text())').get(),
             }
-        
