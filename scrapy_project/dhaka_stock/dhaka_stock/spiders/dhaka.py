@@ -1,13 +1,15 @@
 import scrapy
 from scrapy_splash import SplashRequest
 
-class QuoteJsSpider(scrapy.Spider):
-    name = "quote_js"
-    allowed_domains = ["quotes.toscrape.com"]
-    start_urls = ["http://quotes.toscrape.com/js"]
+class DhakaSpider(scrapy.Spider):
+    name = "dhaka"
+    allowed_domains = ["www.dsebd.org"]
 
     script = '''
         function main(splash, args)
+            splash:on_request(function(request)
+  	            request: set_header('User-Agent', "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36") 
+            end)
             assert(splash:go(args.url))
             assert(splash:wait(0.5))
             splash: set_viewport_full()
