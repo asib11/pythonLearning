@@ -1,0 +1,23 @@
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+
+driver = webdriver.Chrome()
+driver.get("https://casesearch.courts.state.md.us/casesearch/inquiryByCompany.jis")
+driver.implicitly_wait(0.5)
+v1 = driver.find_element(by=By.XPATH, value="(//input[@name='disclaimer'])[1]")
+driver.implicitly_wait(0.5)
+v1.click()
+v2 = driver.find_element(by=By.XPATH, value="(//input[@id='btnDisclaimerAgree'])[1]")
+driver.implicitly_wait(0.5)
+v2.click()
+driver.implicitly_wait(1)
+v3 = driver.find_element(by=By.XPATH, value="(//input[@name='courttype'])[2]")
+driver.implicitly_wait(0.5)
+v3.click()
+driver.implicitly_wait(2)
+text_box = driver.find_element(by=By.XPATH,value= "(//input[@name='caseId'])[1]")
+btn = driver.find_element(by=By.XPATH, value="(//input[@name='searchAppellCaseNumAction'])[1]")
+text_box.send_keys("D07CR23060122")
+driver.implicitly_wait(2)
+btn.click()
+driver.implicitly_wait(2)
