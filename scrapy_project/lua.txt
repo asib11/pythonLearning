@@ -25,3 +25,41 @@ function main(splash ,args)
    splash : html()
   }
  end
+
+
+ maryland
+
+ function main(splash ,args)
+  splash:on_request(function(request)
+  	request: set_header('User-Agent', "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36") 
+  end
+  )
+ 
+  url = args.url
+  assert(splash : go(url))
+  assert(splash : wait(1))
+  check_box = assert(splash:select("input[type='checkbox']"))
+  check_box:mouse_click()
+  assert(splash : wait(1.5))
+  btn= assert(splash:select("#btnDisclaimerAgree"))
+  assert(splash : wait(0.5))
+  btn:mouse_click()
+  assert(splash : wait(3.5))
+  radio_btn=(splash:select("input[value='Y'][name='courttype']"))
+  assert(splash:wait(0.5))
+  radio_btn:mouse_click()
+  assert(splash:wait(1))
+  input_box = (splash:select("input[name='caseId']"))
+  input_box : send_text("D07CR23060122")
+  assert(splash: wait(0.5))
+  get_case= (splash:select("input[name='caseId']"))
+  assert(splash: wait(3.5))
+  get_case : mouse_click()
+  splash: set_viewport_full()
+  
+  
+  return {
+   splash : png(),
+   splash : html()
+  }
+ end
