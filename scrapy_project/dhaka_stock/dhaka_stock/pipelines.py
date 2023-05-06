@@ -5,9 +5,20 @@
 
 
 # useful for handling different item types with a single interface
-from itemadapter import ItemAdapter
+import pymongo
 
 
-class DhakaStockPipeline:
+
+class MongodbPipeline(object):
+    collection_name = "dhaka"
+
+    def open_spider(self, spider):
+        self.client = pymongo.MongoClient("mongodb+srv://ahmedasib1:asibasib@cluster0.xfz5n7g.mongodb.net/?retryWrites=true&w=majority")
+        self.db = self.client["DHAKA_SROCK"]
+
+    def close_spider(self, spider):
+        self.client.close()
+
     def process_item(self, item, spider):
+        self.db[self.collection_name].insert(item)
         return item
